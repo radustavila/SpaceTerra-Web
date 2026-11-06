@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — SpaceTerra</title>
+<meta name="description" content="This page does not exist. Head back to the SpaceTerra home page, Privacy Policy or Terms of Service.">
+<meta name="robots" content="noindex, follow">
+<!-- GitHub Pages serves this file for a missing path at any depth, so relative
+     URLs would resolve against the missing path. Everything here hangs off the
+     site root instead. Change SITE_ROOT and the base href together if the site
+     moves to its own domain (both become "/"). -->
+<base href="/SpaceTerra-Web/">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="assets/img/favicon-96.png" sizes="96x96" type="image/png">
+<link rel="icon" href="assets/img/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/styles.css?v=c41ffcbb">
+<script>
+  /* Unknown routes go straight to the home page, which shows an inline notice
+     naming the path that was requested (see the not-found notice in site.js). */
+  (function () {
+    var SITE_ROOT = '/SpaceTerra-Web/';
+    try {
+      var path = window.location.pathname || SITE_ROOT;
+      var self = /\/404(\.html)?\/?$/i.test(path);
+      if (!self) {
+        var from = path.indexOf(SITE_ROOT) === 0 ? '/' + path.slice(SITE_ROOT.length) : path;
+        from = (from + window.location.search).slice(0, 300);
+        window.location.replace(SITE_ROOT + '?notfound=' + encodeURIComponent(from));
+        return;
+      }
+    } catch (e) {}
+
+    try {
+      var saved = localStorage.getItem('spaceterra-theme');
+      document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+    } catch (e) {}
+  })();
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=/SpaceTerra-Web/"></noscript>
+</head>
+<body>
+<main id="main" class="section" style="min-height:70vh;display:grid;place-items:center;text-align:center">
+  <div class="wrap" style="max-width:560px">
+    <img src="assets/img/spaceterra-icon-192.png" alt="SpaceTerra" width="64" height="64" style="border-radius:16px;margin:0 auto 26px">
+    <h1 style="font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:16px">Lost in space</h1>
+    <p class="lede" style="margin:0 auto 30px">
+      The page you were looking for does not exist. Everything else is still in orbit.
+    </p>
+    <div class="btn-row" style="justify-content:center">
+      <a class="btn btn--primary" href="./">Back to home</a>
+      <a class="btn btn--ghost" href="privacy/">Privacy Policy</a>
+      <a class="btn btn--ghost" href="terms/">Terms of Service</a>
+    </div>
+  </div>
+</main>
+</body>
+</html>

@@ -1,22 +1,640 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SpaceTerra: Universe &amp; Earth</title>
-  <meta name="description" content="SpaceTerra: an offline-first Android app about the universe and Earth.">
-  <style>
-    :root { color-scheme: dark; }
-    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 16px; box-sizing: border-box;
-           background: #05070d; color: #e6e9f2; font: 16px/1.5 system-ui, -apple-system, Roboto, sans-serif; text-align: center; }
-    a { color: #8ab4ff; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SpaceTerra: Star Map, ISS Tracker &amp; Live Earth for Android</title>
+<meta name="description" content="SpaceTerra is a free Android app: AR star map, ISS tracker, stargazing forecast, rocket launches, aurora forecast and live earthquakes, wildfires and storms on a 3D globe. Works offline.">
+<link rel="canonical" href="https://radustavila.github.io/SpaceTerra-Web/">
+<meta name="theme-color" content="#070914">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SpaceTerra">
+<meta property="og:url" content="https://radustavila.github.io/SpaceTerra-Web/">
+<meta property="og:title" content="SpaceTerra: Star Map, ISS Tracker &amp; Live Earth for Android">
+<meta property="og:description" content="SpaceTerra is a free Android app: AR star map, ISS tracker, stargazing forecast, rocket launches, aurora forecast and live earthquakes, wildfires and storms on a 3D globe. Works offline.">
+<meta property="og:image" content="https://radustavila.github.io/SpaceTerra-Web/assets/img/spaceterra-icon-512.png">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="assets/img/favicon-96.png" sizes="96x96" type="image/png">
+<link rel="icon" href="assets/img/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/img/spaceterra-icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="stylesheet" href="assets/css/styles.css?v=c41ffcbb">
+
+<script>
+  // Applied before first paint so there is no theme flash. Dark unless the
+  // visitor picked light with the toggle.
+  (function () {
+    try {
+      var saved = localStorage.getItem('spaceterra-theme');
+      document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+      document.documentElement.classList.add('js');
+    } catch (e) {}
+  })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SpaceTerra: Star Map & Earth",
+  "operatingSystem": "Android 8.0 or later",
+  "applicationCategory": "EducationalApplication",
+  "description": "Star map, ISS tracker, stargazing forecast, rocket launches and live Earth events in one offline-first Android app.",
+  "featureList": [
+    "AR sky map that names stars, planets, constellations, galaxies and nebulae",
+    "Sky tonight, stargazing forecast and astronomy calendar with reminders",
+    "Live ISS position, visible passes and other satellites",
+    "Astronomy picture of the day with the archive back to 1995",
+    "Rocket launches with countdowns and reminders",
+    "3D Earth globe with live earthquakes, wildfires, storms and volcanoes",
+    "Aurora forecast, Kp index and space weather",
+    "Home screen widgets and a daily space quiz",
+    "Works offline"
+  ],
+  "url": "https://radustavila.github.io/SpaceTerra-Web/",
+  "installUrl": "https://play.google.com/store/apps/details?id=com.radustavila.spaceterra",
+  "downloadUrl": "https://play.google.com/store/apps/details?id=com.radustavila.spaceterra",
+  "image": "https://radustavila.github.io/SpaceTerra-Web/assets/img/spaceterra-icon-512.png",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
 </head>
+
 <body>
-  <main>
-    <h1>SpaceTerra: Universe &amp; Earth</h1>
-    <p><a href="https://play.google.com/store/apps/details?id=com.radustavila.spaceterra">Get it on Google Play</a></p>
-    <p><a href="https://gist.github.com/RaduStavilaGG/9427cb681e3c1bd87744f597d89108ee">Privacy policy</a></p>
-  </main>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="./">
+        <img src="assets/img/spaceterra-icon-192.png" alt="" width="30" height="30">
+        SpaceTerra
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="./#features">Features</a></li>
+        <li><a href="./#explore">Explore</a></li>
+        <li><a href="./#how">How it works</a></li>
+        <li><a href="./#privacy">Privacy</a></li>
+        <li><a href="./#faq">FAQ</a></li>
+        <li><a href="./release-notes/">Release notes</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-pressed="true" aria-label="Switch to light theme">
+          <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4"/></svg>
+          <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></svg>
+        </button>
+
+        <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+
+        <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.radustavila.spaceterra" target="_blank" rel="noopener">Get on Google Play</a>
+      </div>
+    </nav>
+
+    <div class="nav-panel" id="nav-panel" data-open="false">
+      <ul>
+        <li><a href="./#features">Features</a></li>
+        <li><a href="./#explore">Explore</a></li>
+        <li><a href="./#how">How it works</a></li>
+        <li><a href="./#privacy">Your privacy</a></li>
+        <li><a href="./#faq">FAQ</a></li>
+        <li><a href="./release-notes/">Release notes</a></li>
+        <li><a href="./about/">About</a></li>
+        <li><a href="./privacy/">Privacy Policy</a></li>
+        <li><a href="./terms/">Terms of Service</a></li>
+      </ul>
+      <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.radustavila.spaceterra" target="_blank" rel="noopener">Get SpaceTerra on Google Play</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Shown only for visitors redirected here from a URL that does not exist (see 404.html) -->
+  <div class="wrap" id="notfound" hidden>
+    <div class="notice" role="status">
+      <svg class="notice-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5M12 16h.01"/></svg>
+      <p>
+        The page <code data-notfound-path></code> doesn’t exist — you’ve been redirected
+        to the home page.
+      </p>
+      <button class="notice-close" type="button" data-notfound-dismiss aria-label="Dismiss this message">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="pill">
+            <span class="dot" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>
+            <span><b>Free on Android</b> · works offline · no account needed</span>
+          </span>
+
+          <h1>The night sky and our planet, <em>live</em>, in one app.</h1>
+
+          <p class="lede">
+            SpaceTerra is a star map, an ISS tracker and a live Earth map in one. Point
+            your phone at the sky to name stars, planets and constellations, check
+            tonight’s stargazing forecast, then follow earthquakes, wildfires and storms
+            around the world as they happen.
+          </p>
+
+          <div class="btn-row">
+            <a class="btn btn--primary btn--lg" href="https://play.google.com/store/apps/details?id=com.radustavila.spaceterra" target="_blank" rel="noopener">
+              <svg width="17" height="19" viewBox="0 0 24 27" fill="currentColor" aria-hidden="true"><path d="M1.6.6a2 2 0 00-.6 1.4v22.6a2 2 0 00.6 1.4l11.7-11.7L1.6.6zM15 15.9l3.9 3.9-13.4 7.1a1.9 1.9 0 01-1 .1L15 15.9zM19.9 8.3l3.4 1.8c1 .6 1 2.2 0 2.8l-3.4 1.8-3.6-3.2 3.6-3.2zM4.5.4a1.9 1.9 0 011 .2l13.4 7.1L15 11.4 4.5.4z"/></svg>
+              Get SpaceTerra on Google Play
+            </a>
+            <a class="btn btn--ghost btn--lg" href="#features">Learn more</a>
+          </div>
+
+          <ul class="hero-meta">
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              Works offline
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              Your location stays on your phone
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              15 languages
+            </li>
+          </ul>
+        </div>
+
+        <!-- App screenshots carousel -->
+        <div class="showcase" data-showcase>
+          <ul class="showcase-track" data-showcase-track>
+            <li class="showcase-slide">
+              <img src="assets/img/screenshots/home.webp" width="640" height="1138" alt="Home screen with Earth today, live events on Earth, sky tonight and quick actions" loading="eager">
+            </li>
+            <li class="showcase-slide">
+              <img src="assets/img/screenshots/sky-map.webp" width="640" height="1138" alt="Sky map naming stars, planets and constellations, with its settings sheet" loading="lazy">
+            </li>
+            <li class="showcase-slide">
+              <img src="assets/img/screenshots/night-sky.webp" width="640" height="1138" alt="Sky tonight with the stargazing forecast, twilight times, Moon phase and the Milky Way planner" loading="lazy">
+            </li>
+            <li class="showcase-slide">
+              <img src="assets/img/screenshots/iss-aurora.webp" width="640" height="1138" alt="ISS tracker with the station's position and passes, next to the aurora and space weather screen" loading="lazy">
+            </li>
+            <li class="showcase-slide">
+              <img src="assets/img/screenshots/earth-3d.webp" width="640" height="1138" alt="3D Earth globe with live wildfires, storms and earthquakes, and a typhoon's details" loading="lazy">
+            </li>
+            <li class="showcase-slide">
+              <img src="assets/img/screenshots/earthquakes.webp" width="640" height="1138" alt="Live Earth events list of recent earthquakes, searchable by place" loading="lazy">
+            </li>
+            <li class="showcase-slide">
+              <img src="assets/img/screenshots/launches.webp" width="640" height="1138" alt="Upcoming rocket launches with countdowns, and asteroids passing Earth" loading="lazy">
+            </li>
+            <li class="showcase-slide">
+              <img src="assets/img/screenshots/galleries.webp" width="640" height="1138" alt="Universe galleries of Hubble and Webb galaxies, nebulae and black holes" loading="lazy">
+            </li>
+          </ul>
+
+          <button type="button" class="showcase-arrow showcase-arrow--prev" data-showcase-prev aria-label="Previous screenshot">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button type="button" class="showcase-arrow showcase-arrow--next" data-showcase-next aria-label="Next screenshot">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+
+          <div class="showcase-dots" data-showcase-dots role="tablist" aria-label="Screenshot navigation"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FEATURES ================= -->
+  <section class="section section--tint" id="features">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Features</span>
+        <h2>Everything above you and everything happening below</h2>
+        <p>
+          The sky over your place, the missions exploring space and the events shaping
+          our planet — in one app that keeps working when the signal drops.
+        </p>
+      </div>
+
+      <div class="grid">
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 5.6 6.1.5-4.6 4 1.4 6-5.3-3.2-5.3 3.2 1.4-6-4.6-4 6.1-.5z"/></svg>
+          </div>
+          <h3>AR sky map</h3>
+          <p>Point your phone at the sky to name stars, planets, constellations, galaxies and nebulae, with constellation art and a red night mode that keeps your eyes dark-adapted.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></svg>
+          </div>
+          <h3>Sky tonight &amp; stargazing forecast</h3>
+          <p>The Moon phase, the visible planets, twilight and darkness times for your place, and a clear-night score from the local cloud forecast with an optional clear-sky alert.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 3v3M16 3v3"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01"/></svg>
+          </div>
+          <h3>Astronomy calendar</h3>
+          <p>Eclipses, meteor showers, Moon phases, planet oppositions and bright comets, with reminders. Plan the best nights for the Milky Way core.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M3 7.5l4.5 4.5L3 16.5M21 7.5L16.5 12l4.5 4.5M7.5 12H9M15 12h1.5"/></svg>
+          </div>
+          <h3>ISS tracker &amp; satellites</h3>
+          <p>The space station's live position on a map, its visible passes over your place with a reminder before each one, who is in space right now, and passes of other satellites you choose.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c3 2.5 4.5 6 4.5 10l-2 3h-5l-2-3c0-4 1.5-7.5 4.5-10z"/><circle cx="12" cy="9.5" r="1.6"/><path d="M9.5 15.5L7 19.5l3-1M14.5 15.5l2.5 4-3-1M12 18v3.5"/></svg>
+          </div>
+          <h3>Rocket launches</h3>
+          <p>Upcoming and past launches with countdowns, mission details and reminders, plus what the James Webb Space Telescope is observing this week.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="9" cy="9.5" r="1.8"/><path d="M21 15.5l-5-5-9.5 9.5"/></svg>
+          </div>
+          <h3>A new picture of the universe every day</h3>
+          <p>The astronomy picture of the day with the full archive back to 1995, an optional daily wallpaper, and galleries of Hubble and Webb images.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.4 3.6 5.2 3.6 8.5s-1.2 6.1-3.6 8.5c-2.4-2.4-3.6-5.2-3.6-8.5s1.2-6.1 3.6-8.5z"/></svg>
+          </div>
+          <h3>Live Earth on a 3D globe</h3>
+          <p>Earthquakes, wildfires, storms and volcanoes as they happen, with day and night shading, daily photos of the whole Earth from deep space and a satellite map updated daily.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12h4l2-5 3.5 10 2.5-7 1.5 2h5.5"/></svg>
+          </div>
+          <h3>Earthquake map &amp; alerts</h3>
+          <p>Earthquakes over 30 days, coloured by your own rules and searchable by place, with an optional alert for strong earthquakes near you.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c3-5 6-7 9-7s6 2 9 7"/><path d="M5 13c2-4 4.5-6 7-6s5 2 7 6"/><path d="M8 20h8"/></svg>
+          </div>
+          <h3>Aurora &amp; space weather</h3>
+          <p>The aurora forecast for the northern and southern lights, the Kp index, solar flares and CMEs, with an alert when the aurora may be visible from your place.</p>
+        </article>
+      </div>
+
+      <div class="extras reveal">
+        <strong>Also included</strong>
+        <span>11 home screen widgets</span>
+        <span>Daily space quiz</span>
+        <span>Mars rover photos</span>
+        <span>Exoplanets</span>
+        <span>Asteroids passing Earth</span>
+        <span>Deep Space Network live</span>
+        <span>3D Moon globe &amp; Moon map</span>
+        <span>Observing log &amp; Messier list</span>
+        <span>Climate vital signs</span>
+        <span>Space news &amp; podcasts</span>
+        <span>NASA image library search</span>
+        <span>Favourites, kept offline</span>
+        <span>Tablet layouts</span>
+        <span>Light &amp; dark themes</span>
+        <span>15 languages</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EXPLORE ================= -->
+  <section class="section" id="explore">
+    <div class="wrap">
+      <div class="split">
+        <div class="reveal">
+          <span class="eyebrow">Explore</span>
+          <h2>Three worlds, one home screen</h2>
+          <p class="lede" style="margin-top:16px">
+            SpaceTerra is organised around the sky, space and Earth. Each has its own
+            tab, and Home pulls the highlights together: today’s picture, tonight’s sky
+            and what is happening on the planet right now.
+          </p>
+
+          <ul class="checks">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              <span><b>Arrange it your way.</b> Reorder Home, Universe and Earth, and hide the sections you don’t use.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              <span><b>Jump straight in.</b> Long-press the app icon to open the sky map, Earth 3D, the ISS or the quiz.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              <span><b>Favourites for everything.</b> Save pictures, events and objects; they stay readable offline.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="cases reveal">
+          <article class="case" id="sky">
+            <div class="glyph" aria-hidden="true">🔭</div>
+            <h3>Night sky</h3>
+            <p>AR sky map, sky tonight, stargazing forecast, astronomy calendar, Milky Way planner and an observing log.</p>
+          </article>
+          <article class="case" id="space">
+            <div class="glyph" aria-hidden="true">🚀</div>
+            <h3>Space exploration</h3>
+            <p>Picture of the day, launches, the ISS, Webb and Hubble galleries, Mars rover photos, exoplanets and asteroids.</p>
+          </article>
+          <article class="case" id="earth">
+            <div class="glyph" aria-hidden="true">🌍</div>
+            <h3>Live Earth</h3>
+            <p>3D globe with earthquakes, wildfires, storms and volcanoes, aurora and space weather, and climate vital signs.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HOW IT WORKS ================= -->
+  <section class="section section--tint" id="how">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">How it works</span>
+        <h2>Pick your place, then look up</h2>
+      </div>
+
+      <div class="steps">
+        <div class="step reveal">
+          <span class="num"></span>
+          <h3>Choose your place</h3>
+          <p>Pick a city from thousands, or let the app use your device location. It stays on your phone and drives the sky, passes, alerts and maps.</p>
+        </div>
+        <div class="step reveal">
+          <span class="num"></span>
+          <h3>Check tonight</h3>
+          <p>See the clear-night score, the Moon, the visible planets, the next ISS pass and when it gets properly dark.</p>
+        </div>
+        <div class="step reveal">
+          <span class="num"></span>
+          <h3>Point at the sky</h3>
+          <p>Open the AR sky map and name what you see. Red night mode keeps your eyes dark-adapted; the observing log keeps track of what you found.</p>
+        </div>
+        <div class="step reveal">
+          <span class="num"></span>
+          <h3>Get told when it matters</h3>
+          <p>Optional alerts for clear skies, ISS passes, launches, sky events, the aurora and strong earthquakes near you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRIVACY ================= -->
+  <section class="section" id="privacy">
+    <div class="wrap">
+      <div class="split">
+        <div class="reveal">
+          <span class="eyebrow">Privacy</span>
+          <h2>Your sky, your phone</h2>
+          <p class="lede" style="margin-top:16px">
+            SpaceTerra has no accounts and no server holding your data. What you save
+            stays on your device.
+          </p>
+
+          <ul class="checks">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              <span><b>Location stays local.</b> Your place is used on your phone to work out the sky. Only the stargazing forecast sends a position rounded to about 1 km to MET Norway.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              <span><b>Nothing to sign up for.</b> No name, email or identifier is sent with the data the app downloads.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              <span><b>Statistics you can switch off.</b> Anonymous counts of the screens you use, never your location or searches. Turn them off in Settings → Privacy.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              <span><b>Ad choices in your hands.</b> In the EEA, the UK and Switzerland the app asks before loading any ads, and you can change your answer at any time.</span>
+            </li>
+          </ul>
+
+          <div class="btn-row" style="margin-top:28px">
+            <a class="btn btn--ghost" href="privacy/">Read the Privacy Policy</a>
+          </div>
+        </div>
+
+        <div class="info-panel reveal">
+          <div class="glyph" aria-hidden="true">🛰️</div>
+          <div class="info-flow">
+            <div class="info-row">
+              <span class="k">Your place</span>
+              <span class="v">On your device</span>
+            </div>
+            <div class="info-row">
+              <span class="k">Favourites &amp; observing log</span>
+              <span class="v">On your device</span>
+            </div>
+            <div class="info-row">
+              <span class="k">AR camera</span>
+              <span class="v">Shown on screen, never saved</span>
+            </div>
+            <div class="info-row">
+              <span class="k">Stargazing forecast</span>
+              <span class="v">Place rounded to ~1 km</span>
+            </div>
+          </div>
+
+          <p class="info-note">
+            Android backup, if you have it on, may back up your favourites and
+            settings to your own Google account.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DATA SOURCES ================= -->
+  <section class="section section--tint" id="sources">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Data sources</span>
+        <h2>Built on open science</h2>
+        <p>
+          SpaceTerra shows public data from space agencies, observatories and weather
+          services, credited in the app next to what it shows. It is an independent app
+          and is not affiliated with or endorsed by NASA or any other agency.
+        </p>
+      </div>
+
+      <div class="extras reveal">
+        <strong>Data from</strong>
+        <span>NASA</span>
+        <span>NOAA</span>
+        <span>USGS</span>
+        <span>ESA</span>
+        <span>STScI</span>
+        <span>JPL</span>
+        <span>MET Norway</span>
+        <span>CelesTrak</span>
+        <span>Launch Library 2</span>
+        <span>GDACS</span>
+        <span>and more</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2>Common questions</h2>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>Is SpaceTerra free?</summary>
+          <div class="faq-a">
+            <p>Yes. SpaceTerra is free on Google Play. From the third time you open the app, some screens show a banner ad, which funds its development.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Does it work offline?</summary>
+          <div class="faq-a">
+            <p>Yes. What you have already seen stays on your phone, so screens open fast and stay readable without a connection. The star map, all sky calculations, the Moon map and the quiz work fully offline. New pictures, events and forecasts need internet.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Do I need an account?</summary>
+          <div class="faq-a">
+            <p>No. There is no SpaceTerra account: no sign-up, no username, no password.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Where does my location go?</summary>
+          <div class="faq-a">
+            <p>Nowhere but your phone. The place you pick, or your device location if you allow it, is used on your device to work out the sky, passes, alerts and maps. Only the stargazing forecast sends MET Norway your place rounded to about 1 km. <a href="privacy/">Read the Privacy Policy</a>.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Is SpaceTerra a NASA app?</summary>
+          <div class="faq-a">
+            <p>No. SpaceTerra is an independent app and is not affiliated with or endorsed by NASA or any other agency. It shows public data from NASA, NOAA, USGS, ESA, JPL and others, credited in the app.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Can I rely on the earthquake and aurora alerts?</summary>
+          <div class="faq-a">
+            <p>Use them for interest, not safety. Earthquake, wildfire and space weather data comes from third parties and may be late or incomplete, and Android may delay notifications. Always follow your local authorities and official warning services. See the <a href="terms/#safety">Terms of Service</a>.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Which widgets are there?</summary>
+          <div class="faq-a">
+            <p>Picture of the day, aurora, next launch, sky tonight, Moon, ISS, sky events, stargazing, earthquakes, Earth today and a daily space fact. Touch and hold an empty spot on your home screen, tap Widgets and pick SpaceTerra.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="section section--flush-top">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>Look up tonight.</h2>
+        <p>SpaceTerra is free on Google Play. Pick your place and see what is in the sky, what is overhead and what is happening on Earth right now.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary btn--lg" href="https://play.google.com/store/apps/details?id=com.radustavila.spaceterra" target="_blank" rel="noopener">
+            <svg width="17" height="19" viewBox="0 0 24 27" fill="currentColor" aria-hidden="true"><path d="M1.6.6a2 2 0 00-.6 1.4v22.6a2 2 0 00.6 1.4l11.7-11.7L1.6.6zM15 15.9l3.9 3.9-13.4 7.1a1.9 1.9 0 01-1 .1L15 15.9zM19.9 8.3l3.4 1.8c1 .6 1 2.2 0 2.8l-3.4 1.8-3.6-3.2 3.6-3.2zM4.5.4a1.9 1.9 0 011 .2l13.4 7.1L15 11.4 4.5.4z"/></svg>
+            Get SpaceTerra on Google Play
+          </a>
+          <a class="btn btn--ghost btn--lg" href="release-notes/">What’s new in 1.2</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a class="brand" href="./">
+          <img src="assets/img/spaceterra-icon-192.png" alt="" width="30" height="30">
+          SpaceTerra
+        </a>
+        <p>Star map, ISS tracker, stargazing forecast and live Earth events in one app. Available on Android.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>App</h4>
+        <ul>
+          <li><a href="https://play.google.com/store/apps/details?id=com.radustavila.spaceterra" target="_blank" rel="noopener">Google Play</a></li>
+          <li><a href="./#features">Features</a></li>
+          <li><a href="./#how">How it works</a></li>
+          <li><a href="./#faq">FAQ</a></li>
+          <li><a href="./release-notes/">Release notes</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="./#sky">Night sky</a></li>
+          <li><a href="./#space">Space exploration</a></li>
+          <li><a href="./#earth">Live Earth</a></li>
+          <li><a href="./#sources">Data sources</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>About &amp; legal</h4>
+        <ul>
+          <li><a href="./about/">About SpaceTerra</a></li>
+          <li><a href="./privacy/">Privacy Policy</a></li>
+          <li><a href="./terms/">Terms of Service</a></li>
+          <li><a href="./delete-data/">Delete your data</a></li>
+          <li><a href="mailto:stavilaradu10@gmail.com">stavilaradu10@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 SpaceTerra. Not affiliated with or endorsed by NASA.</span>
+      <nav aria-label="Legal">
+        <a href="./privacy/">Privacy</a>
+        <a href="./terms/">Terms</a>
+        <a href="mailto:stavilaradu10@gmail.com">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js?v=11c660a6" defer></script>
 </body>
 </html>

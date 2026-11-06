@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About SpaceTerra</title>
+<meta name="description" content="SpaceTerra is a star map, ISS tracker and live Earth app for Android, built and maintained by one developer.">
+<link rel="canonical" href="https://radustavila.github.io/SpaceTerra-Web/about/">
+<meta name="theme-color" content="#070914">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SpaceTerra">
+<meta property="og:url" content="https://radustavila.github.io/SpaceTerra-Web/about/">
+<meta property="og:title" content="About SpaceTerra">
+<meta property="og:description" content="SpaceTerra is a star map, ISS tracker and live Earth app for Android, built and maintained by one developer.">
+<meta property="og:image" content="https://radustavila.github.io/SpaceTerra-Web/assets/img/spaceterra-icon-512.png">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" href="../assets/img/favicon-96.png" sizes="96x96" type="image/png">
+<link rel="icon" href="../assets/img/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="icon" href="../assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../assets/img/spaceterra-icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="stylesheet" href="../assets/css/styles.css?v=c41ffcbb">
+
+<script>
+  // Applied before first paint so there is no theme flash. Dark unless the
+  // visitor picked light with the toggle.
+  (function () {
+    try {
+      var saved = localStorage.getItem('spaceterra-theme');
+      document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+      document.documentElement.classList.add('js');
+    } catch (e) {}
+  })();
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="../">
+        <img src="../assets/img/spaceterra-icon-192.png" alt="" width="30" height="30">
+        SpaceTerra
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="../#features">Features</a></li>
+        <li><a href="../#explore">Explore</a></li>
+        <li><a href="../#how">How it works</a></li>
+        <li><a href="../#privacy">Privacy</a></li>
+        <li><a href="../#faq">FAQ</a></li>
+        <li><a href="../release-notes/">Release notes</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-pressed="true" aria-label="Switch to light theme">
+          <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4"/></svg>
+          <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></svg>
+        </button>
+
+        <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+
+        <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.radustavila.spaceterra" target="_blank" rel="noopener">Get on Google Play</a>
+      </div>
+    </nav>
+
+    <div class="nav-panel" id="nav-panel" data-open="false">
+      <ul>
+        <li><a href="../#features">Features</a></li>
+        <li><a href="../#explore">Explore</a></li>
+        <li><a href="../#how">How it works</a></li>
+        <li><a href="../#privacy">Your privacy</a></li>
+        <li><a href="../#faq">FAQ</a></li>
+        <li><a href="../release-notes/">Release notes</a></li>
+        <li><a href="../about/" aria-current="page">About</a></li>
+        <li><a href="../privacy/">Privacy Policy</a></li>
+        <li><a href="../terms/">Terms of Service</a></li>
+      </ul>
+      <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.radustavila.spaceterra" target="_blank" rel="noopener">Get SpaceTerra on Google Play</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="article-hero">
+    <div class="wrap">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../">Home</a></li>
+          <li aria-current="page">About</li>
+        </ol>
+      </nav>
+
+      <h1>About SpaceTerra</h1>
+      <p>
+        SpaceTerra is a star map, ISS tracker and live Earth app for Android, built and
+        maintained by one developer.
+      </p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="article-body">
+      <div class="prose">
+
+        <section>
+          <h2>Who builds SpaceTerra</h2>
+          <p>
+            I’m Radu Stavila, an Android developer. I design, build and support SpaceTerra
+            myself, along with this website. I also make
+            <a href="https://xpiry.net/" target="_blank" rel="noopener">Xpiry</a>, an expiry date tracker.
+          </p>
+        </section>
+
+        <section>
+          <h2>Where it started</h2>
+          <p>
+            SpaceTerra began in 2026 as a small, offline-first viewer for the astronomy picture
+            of the day. It grew from there into the sky over your place, the missions exploring
+            space and the events happening on Earth right now.
+            <!-- TODO(Radu): verify — add your own words if you like (why space, what came next). -->
+          </p>
+        </section>
+
+        <section>
+          <h2>How SpaceTerra is made</h2>
+          <ul>
+            <li><strong>Offline-first.</strong> What you have seen is kept on your phone, so the app opens fast and stays readable without a connection.</li>
+            <li><strong>Your location stays local.</strong> There is no SpaceTerra account and no server holding your data. The <a href="../privacy/">Privacy Policy</a> explains exactly what leaves your phone.</li>
+            <li><strong>Built on open data.</strong> Pictures and data come from NASA, NOAA, USGS, ESA, JPL and other public sources, credited in the app. SpaceTerra is not affiliated with or endorsed by any of them.</li>
+            <li><strong>Free, with ads.</strong> Banner ads on some screens fund its development.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Get in touch</h2>
+          <p>
+            Questions, bugs or ideas: email
+            <a href="mailto:stavilaradu10@gmail.com">stavilaradu10@gmail.com</a>.
+          </p>
+          <p style="margin-top:22px">
+            <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.radustavila.spaceterra" target="_blank" rel="noopener">Get SpaceTerra on Google Play</a>
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a class="brand" href="../">
+          <img src="../assets/img/spaceterra-icon-192.png" alt="" width="30" height="30">
+          SpaceTerra
+        </a>
+        <p>Star map, ISS tracker, stargazing forecast and live Earth events in one app. Available on Android.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>App</h4>
+        <ul>
+          <li><a href="https://play.google.com/store/apps/details?id=com.radustavila.spaceterra" target="_blank" rel="noopener">Google Play</a></li>
+          <li><a href="../#features">Features</a></li>
+          <li><a href="../#how">How it works</a></li>
+          <li><a href="../#faq">FAQ</a></li>
+          <li><a href="../release-notes/">Release notes</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="../#sky">Night sky</a></li>
+          <li><a href="../#space">Space exploration</a></li>
+          <li><a href="../#earth">Live Earth</a></li>
+          <li><a href="../#sources">Data sources</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>About &amp; legal</h4>
+        <ul>
+          <li><a href="../about/">About SpaceTerra</a></li>
+          <li><a href="../privacy/">Privacy Policy</a></li>
+          <li><a href="../terms/">Terms of Service</a></li>
+          <li><a href="../delete-data/">Delete your data</a></li>
+          <li><a href="mailto:stavilaradu10@gmail.com">stavilaradu10@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 SpaceTerra. Not affiliated with or endorsed by NASA.</span>
+      <nav aria-label="Legal">
+        <a href="../privacy/">Privacy</a>
+        <a href="../terms/">Terms</a>
+        <a href="mailto:stavilaradu10@gmail.com">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js?v=11c660a6" defer></script>
+</body>
+</html>
