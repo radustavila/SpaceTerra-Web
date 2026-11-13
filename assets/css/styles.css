@@ -266,6 +266,13 @@ h3 { font-size: 1.09rem; letter-spacing: -.012em; line-height: 1.35; }
 .btn--lg { padding: 15px 26px; font-size: 1.02rem; }
 .btn svg { flex: none; }
 
+/* Official store badges (Google Play, App Store); the artwork itself must not be restyled */
+.store-badge { display: inline-flex; flex: none; line-height: 0; border-radius: 8px; transition: transform .15s ease, opacity .15s ease; }
+a.store-badge[href]:hover { transform: translateY(-1px); opacity: .9; }
+.store-badge img { height: 48px; width: auto; }
+.store-badge--sm img { height: 36px; }
+@media (max-width: 480px) { .store-badge img { height: 42px; } }
+
 .btn-row {
   display: flex;
   flex-wrap: wrap;
@@ -353,7 +360,7 @@ h3 { font-size: 1.09rem; letter-spacing: -.012em; line-height: 1.35; }
 .nav-links a { white-space: nowrap; }
 
 @media (max-width: 1120px) {
-  .nav-links, .nav-actions .btn { display: none; }
+  .nav-links, .nav-actions .btn, .nav-actions .store-badge { display: none; }
   .nav-toggle { display: inline-grid; }
 
   .nav-panel {
@@ -383,6 +390,7 @@ h3 { font-size: 1.09rem; letter-spacing: -.012em; line-height: 1.35; }
     border-bottom: 1px solid var(--border);
   }
   .nav-panel .btn { display: flex; width: 100%; margin-top: 18px; }
+  .nav-panel .store-badge { margin: 18px 10px 0 0; }
 }
 @media (min-width: 1121px) { .nav-panel { display: none !important; } }
 
