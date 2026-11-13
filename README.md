@@ -16,6 +16,11 @@ Same structure as the Xpiry site (`Xpiry-Web`): one stylesheet, one script, hand
 | `/release-notes/` | `release-notes/index.html` | What changed in each version                    |
 | (any missing path)| `404.html`                 | Redirects to the home page with a notice        |
 
+Store badges: every Google Play button is the official badge (`assets/img/badges/google-play.png`)
+next to the App Store badge (`assets/img/badges/app-store.svg`). The iOS app isn't out yet, so the
+App Store badges are `<a class="store-badge" data-app-store>` with no `href`: once it ships, add
+`href="https://apps.apple.com/app/id…" target="_blank" rel="noopener"` to each of them.
+
 Assets: `assets/css/styles.css`, `assets/js/site.js` (theme toggle, mobile nav, screenshot
 carousel, scroll reveal, not-found notice — progressive enhancement only), `assets/img/*`.
 
