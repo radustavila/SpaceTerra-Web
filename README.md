@@ -9,8 +9,8 @@ Same structure as the Xpiry site (`Xpiry-Web`): one stylesheet, one script, hand
 | Path              | File                       | Purpose                                         |
 |-------------------|----------------------------|-------------------------------------------------|
 | `/`               | `index.html`               | Home — features, explore, how it works, privacy, data sources, FAQ |
-| `/privacy/`       | `privacy/index.html`       | Privacy Policy (Play Console privacy policy URL) |
-| `/terms/`         | `terms/index.html`         | Terms of Service                                |
+| `/privacy/`       | `privacy/index.html`       | Privacy Policy (Play Console and App Store Connect privacy policy URL) |
+| `/terms/`         | `terms/index.html`         | Terms of Service (Terms of Use link in the App Store descriptions) |
 | `/delete-data/`   | `delete-data/index.html`   | How to delete what the app keeps               |
 | `/about/`         | `about/index.html`         | Who builds SpaceTerra                           |
 | `/release-notes/` | `release-notes/index.html` | What changed in each version                    |
